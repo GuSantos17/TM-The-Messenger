@@ -1,4 +1,12 @@
 # TM-The-Messenger
-Repositorio do projeto da aula de Topicos Especiais.
+Messaging system between friends
 
-Inicialmente criando o repositorio do sistema TM - THE MESSENGER
+# Introdution
+- Brif introduction to the system
+
+# Requeriments
+- Tests performed on Windows 10 with Python (3.8.1)
+
+## libraries
+- Django==3.0.3
+- python-decouple==3.3
