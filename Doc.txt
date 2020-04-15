@@ -1,0 +1,32 @@
+Justificativa
+O será de envio de mensagens para disponibilizar para todos um mensageiro para se comunicar com todos que desejar.
+
+Finalidade
+Sua finalidade é envio e recebimento de mensangens instantaneo, através de dois ou mais usuários.
+
+Objetivo(s)
+realizar a conexão entre dois ou usuários no qual
+será necessário realizar criar uma conta e realizar login, 
+e se comunicar com qualquer contato que possua conta no sistema e que deseje se comunicar.
+
+Descrição do Produto
+O sistema deverá permitir que o usuário crie uma conta erealize um login através da
+tela de inicio, se conecte com todas as pessoas de sua lista de contatos
+pelas mensagens que serão enviadas e recebidas.
+A pessoa deverá enviar uma mensagem para o destinatário, para que o mesmo salve seu contato
+e permita a troca de mensagens onde o receptor irá decidir se ele aceita
+adicionar essa pessoa em sua lista de contatos ou não. 
+
+Estimativas de Tempo e Custo
+Para o projeto solicitado seria um total de 120 horas de desenvolvimento, testado e implementado
+de acordo com os requisitos definidos.
+
+Não é escopo
+O sistema não irá permitir o envio de qualquer tipo de arquivo, desde imagens até documentos,
+não será permitido também o bloqueio de um usuário em sua lista de contatos.
+
+Critérios de aceitação
+Para utilizar o sistema deverá ter conexão com internet.
+
+Premissas / Restrições / Riscos
+A única restrição se dá ao caso do usuário não tiver conexão;
