@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <form action="register" method="post">{% csrf_token %}
+        <div class="row" style="margin-left: 35%; margin-top: 10%;">
+            <div class="col-5">
+                <h2 class="text-center">The Messenger</h2>
+                <h3 class="text-center">Cadastro</h3>
+                <div>
+                    {% for message in msg %}
+                    <div class="alert alert-danger">
+                        <strong>Erro!</strong> {{ message }}
+                </div>
+                {% endfor %}
+                    
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text", class="form-control" id="username" name="username" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text", class="form-control" id="email" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="first_name:">Nome:</label>
+                    <input type="text", class="form-control" id="firstname" name="firstname" placeholder="Nome">
+                </div>
+                <div class="form-group">
+                    <label for="last_name:">Sobrenome:</label>
+                    <input type="text", class="form-control" id="lastname" name="lastname" placeholder="Sobrenome">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password", class="form-control" id="password" name="password" placeholder="Senha">
+                </div>
+                <div class="form-group">
+                    <label for="rpassword">Confirme a Senha:</label>
+                    <input type="password", class="form-control" id="repeatpassword" name="repeatpassword" placeholder="Confirme a Senha">
+                </div>
+                <div class="text-center">
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+                </div>
+                <div class="text-center"> 
+                    <a href="/">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
