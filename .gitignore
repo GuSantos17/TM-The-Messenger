@@ -1,4 +1,4 @@
 # Items ignored by git
 .idea
-.venv
+.env
 *pyc
