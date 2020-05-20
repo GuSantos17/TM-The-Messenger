@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import AuthUser
 from datetime import datetime
+from app import serviceMail
+from random import randint
 
 # Create your views here.
 
@@ -84,3 +86,30 @@ def register(request):
     else:
         return render(request, 'register.html', data)
     return render(request, 'register.html')
+
+@csrf_protect
+def recuperar_senha(request):
+    data = {}
+    data['msg'] = []
+    data['error'] = []
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try: 
+            if(email == ''):
+                data['error'].append('e-mail inválido')
+            else:
+                val_user = User.objects.filter(email=email)
+                if(len(val_user) > 0):
+                    newpass = randint(10000000,99999999)
+                    user = User.objects.get(email=email)
+                    user.set_password(newpass)
+                    user.save()
+                    serviceMail.recoveryPass(newpass, user.username, email)
+                    data['msg'].append('Sua nova senha foi enviada no email!')
+                else:
+                    data['error'].append('email não cadastrado!')
+        except:
+            data['error'].append('Ocorreu algum erro, tente novamente mais tarde!')
+            return render(request,'recuperar_senha.html', data)
+    return render(request, 'recuperar_senha.html', data)
+

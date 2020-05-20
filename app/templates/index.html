@@ -1,8 +1,12 @@
-{% extends "base.html" %}
+{% extends "temp.html" %}
 
 {% block content %}
-<h1>Logado com sucesso</h1>
-<a href="/logout/">
-<button type="button" class="btn btn-outline-warning">LOGOUT</button>
-</a>
+<h1 class="text-center display-2">LOGADO COM SUCESSO</h1>
+</hr>
+<div class="text-center">
+    <a href="/logout/">
+    <button type="button" class="btn btn-outline-danger">LOGOUT</button>
+    </a>
+</div>
+
 {% endblock content %}

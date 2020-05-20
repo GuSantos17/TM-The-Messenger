@@ -1,44 +1,48 @@
-{% extends "base.html" %}
+{% extends "temp.html" %}
 
 {% block content %}
 
-<div class="container mt-4">
-    <form action="logar" , method="post">{% csrf_token %}
-        <div class="row" style="margin-left:35%; margin-top:10%">
-            <div class="col-4">
-                <h2 class="text-center">The Messenger</h2>
-                <div>
-                    {% for message in msg %}
-                    <div class="alert alert-success">
-                        <strong>Sucesso!</strong> {{ message }}
-                    </div>
-                    {% endfor %}
-                <div class="form-group">
-                    <label for="username">Usuario:</label>
-                    <input type="text" , class="form-control" id="username" name="username" placeholder="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" , class="form-control" id="password" name="password" placeholder="senha">
-                </div>
-                <div>
-                    {% for message in messages %}
-                    <div class="alert alert-danger">
-                        <strong>Erro!</strong> {{ message }}
-                    </div>
-                    {% endfor %}
-                    <div class="text-center" style="margin-left:5%; margin-top:5%; margin-right:5%">
-                    <button type="submit" class="btn btn-success">Login</button>
-                    <a href="/register">
-                            <button type="button" class="btn btn-secondary">Cadastre-se</button>
-                        </a>
-                    </div>
-                    <div class="text-center" style="margin-top: 20%;">
-                        <a href="/">Recuperar Senha</a>
-                    </div>
-                </div>
+<div class="container">
+    <h2 class="text-center display-2">The Messenger</h2>
+    <hr></hr>
+    <form action="logar" method="post">{% csrf_token %}
+        </br>
+        </br>
+        {% for message in msg %}
+        <div class="alert alert-success">
+            <strong>Sucesso!</strong> {{ message }}
+        </div>
+        {% endfor %}
+        <div class="center">
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Usuario:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
             </div>
+        </div>
 
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Senha:</label>
+            <div class="col-sm-8">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
+            </div>
+        </div>
+        <div>
+            {% for message in messages %}
+            <div class="alert alert-danger">
+                <strong>Erro!</strong> {{ message }}
+            </div>
+            {% endfor %}
+            <div class="text-center" style="margin-left:5%; margin-top:5%; margin-right:5%">
+                <button type="submit" class="btn btn-outline-success">Login</button>
+                <a href="/register">
+                        <button type="button" class="btn btn-outline-info">Cadastre-se</button>
+                </a>
+                <a href="/recuperar_senha">
+                    <button type="button" class="btn btn-outline-danger">Recuperar Senha</button>
+                </a>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock content %}
