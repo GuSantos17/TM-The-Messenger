@@ -1,13 +1,13 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import smtplib
+import smtplib 
 from decouple import config
 
 def recoveryPass(newpass, user, email):
 
     msg = MIMEMultipart()
 
-    message = "Seu usuário é: " + str(user) + " e a sua nova senha é: " + str(newpass)
+    message = "Usuário: " + str(user) + "nova senha: " + str(newpass)
     passwd = config('PASS_EMAIL')
     msg['from'] = config('EMAIL_FROM')
     msg['to'] = str(email)
