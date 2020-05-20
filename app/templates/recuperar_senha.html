@@ -1,0 +1,40 @@
+{% extends "temp.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center display-2">The Messenger</h2>
+    <hr></hr>
+    <form action="recuperar_senha" method="POST">{% csrf_token %}
+        </br>
+        <h4 class="text-center display-4">Recuperação de Senha</h4>
+        </br></br></br>
+                    {% for message in msg %}
+                    <div class="text-center">
+                        <div class="alert alert-success">
+                            <strong>{{ message }}</strong> 
+                        </div>
+                        {% endfor %}
+                        {% for message in error %}
+                        <div class="alert alert-danger">
+                            <strong>Erro!</strong> {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+        <div class="center">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label" style="margin-left:10%;">Digite seu e-mail:</label>
+                <div class="col-sm-8">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                </div>
+            </div>
+            <div class="text-center" style="margin-left:5%; margin-top:5%; margin-right:5%">
+                <button type="submit" class="btn btn-outline-success">Enviar</button>
+                <a href="/">
+                    <button type="button" class="btn btn-outline-info">Voltar</button>
+                </a>
+            </div>
+            
+        </div>
+    </form>
+</div>
+{% endblock content %}
