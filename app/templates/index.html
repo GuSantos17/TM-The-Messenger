@@ -2,7 +2,10 @@
 
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f0f5f5;">
-    <a class="navbar-brand" href="#">The Messenger</a>
+  {% for user in user %}
+    <a class="navbar-brand" href="#">The Messenger - {{ user }}</a>
+  {% endfor %}  
+  
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,9 +14,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#">Amigos</a>
-        </li>
+        </li> -->
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <a href="/logout/">
@@ -22,56 +25,66 @@
       </form>
     </div>
 </nav>
-
 <hr>
-<h4 class="text-center display-4">ALGO AQUI</h1>
+<h4 class="h3 text-center">Buscar Amigos</h4>
+<div class="d-flex justify-content-center">
+  <form class="form-inline my-2 my-lg-0" style="padding-top: 1%;" action="/find/" method="POST">{% csrf_token %}
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="Search" name="Search" required="true">
+    <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="collapse" 
+    data-target="#multiCollapseExample1" aria-expanded="true" aria-controls="multiCollapseExample1">Search</button>
+  </form>
+</div>
+
+<div class="justify-content-center" style="padding-left: 25%; padding-right: 25%;">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div style="padding-top: 5%;"> 
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr>                        
+                <td>{{ user.username }}</td>
+                <td><a href="/friend/?id={{ user.id }}&op=add" class="btn btn-outline-success">Adicionar</a>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
 <hr>
 <div class="container">
       <div class="col-sm-12 row">
           <div class="col-sm-6 border border-dark" >
-            <form class="form-inline my-2 my-lg-0" style="padding-top: 5%;">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <p class="h4 text-center" style="padding-top: 5%;">Lista de Amigos</p>
             <div style="padding-top: 5%;"> 
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">User</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Ação</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td><button type="button" class="btn btn-outline-sucess">Adicionar</button></td>
-                      </tr>
-                      <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td><button type="button" class="btn btn-outline-sucess">Adicionar</button></td>
-                      </tr>
-                      <tr>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td><button type="button" class="btn btn-outline-sucess">Adicionar</button></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
+              <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Username</th>
+                      <th scope="col">Ação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for friend in friends %}
+                    <tr>                        
+                      <td>{{ friend.friend_id.username }}</td>
+                      <td><a href="/" class="btn btn-outline-primary">Mensagem</a></td>
+                      <td><a href="/friend/?id={{ friend.friend_id.id }}&op=del" class="btn btn-outline-danger">Remover</button></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+           </div>
           </div>
           <div class="col-sm-6 border border-dark" >
-            <p>teste</p>
-            <p>teste</p>
-            <p>teste</p>
-            <p>teste</p>
-            <p>teste</p>
-            <p>teste</p>
-            <p>teste</p>
-            <p>teste</p>
-            <p>teste</p>
+            
           </div>
       </div>
   </div>

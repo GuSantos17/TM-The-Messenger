@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^logout', views.logout_us, name='logout_us'),
     url(r'^register', views.register, name='register'),
     url(r'^recuperar_senha', views.recuperar_senha, name='recuperar_senha'),
+    url(r'^find', views.index, name='find'),
+    url(r'^friend', views.friend, name='friend'),
 ]

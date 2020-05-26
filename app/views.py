@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import AuthUser
+from .models import AuthUser , UserFriend
 from datetime import datetime
 from app import serviceMail
 from random import randint
@@ -16,7 +16,18 @@ def login_us(request):
 
 @login_required(login_url='')
 def index(request):
-    return render(request, 'index.html')
+    data = {}
+    data['user'] = []
+    data['users'] = []
+    data['user'].append(request.user)
+    data['friends'] = UserFriend.objects.filter(my_id=request.user.id)
+    
+    if request.method == 'POST':
+        var = request.POST.get('Search')
+        data['users'] = AuthUser.objects.filter(username__contains=var).exclude(
+            id=request.user.id).exclude(userfriend__in=data['friends'])
+
+    return render(request, 'index.html', data)
 
 def logout_us(request):
     print(request.user)
@@ -113,3 +124,25 @@ def recuperar_senha(request):
             return render(request,'recuperar_senha.html', data)
     return render(request, 'recuperar_senha.html', data)
 
+@csrf_protect
+def friend(request):
+    data = {}
+    data['error'] = []
+    if request.method == 'GET':
+        id = request.GET.get('id')
+        op = request.GET.get('op')
+        if(id != None and op != None):
+            try:           
+                friend = AuthUser.objects.get(id=id)
+                iduser = int(request.user.id)
+                if(friend == ''):
+                    data['error'].append('Amigo inválido')
+                elif(op == "add"):
+                    fr = UserFriend(my_id=iduser,friend_id=friend)
+                    fr.save()
+                elif(op == "del"):
+                    fr = UserFriend.objects.get(my_id=iduser,friend_id=friend)
+                    fr.delete()
+            except:
+                data['error'].append("Erro ao adicionar! Tente outra vez!!!")
+        return redirect('index')
